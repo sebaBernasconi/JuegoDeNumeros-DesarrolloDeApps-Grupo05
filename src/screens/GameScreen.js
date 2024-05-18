@@ -1,10 +1,10 @@
-import {SafeAreaView, StyleSheet, Text} from 'react-native'
+import {Button, SafeAreaView, StyleSheet, Text} from 'react-native'
 import React from 'react'
 
-export default function GameScreen() {
+export default function GameScreen({navigation}) {
     return (
         <SafeAreaView>
-            <Text>HomeScreen</Text>
+            <Text>TODO</Text>
         </SafeAreaView>
     )
 }
