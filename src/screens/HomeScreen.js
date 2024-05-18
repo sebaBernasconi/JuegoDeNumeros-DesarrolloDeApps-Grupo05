@@ -19,11 +19,11 @@ export default function HomeScreen({navigation}) {
         <SafeAreaView style={{flex: 1, padding: 16, backgroundColor: "#FAFAFA"}}>
             <View style={styles.container}>
                 <Text style={styles.title}>Numble</Text>
-                <Text style={styles.text}>Bienvenido!</Text>
+                <Text style={[styles.text, {fontSize: 34, fontFamily: "SecondaryFontBold"}]}>Bienvenido!</Text>
                 <Text style={styles.text}>Adivina el numero de cuatro cifras para ganar.</Text>
-                <View style={{flexDirection: "row"}}>
-                    <BouncyCheckbox size={30} unFillColor={colors.lightBlue100} fillColor={colors.lightBlue}/>
-                    <Text style={{fontSize: 20}}>Permitir repeticion de cifras</Text>
+                <View style={{flexDirection: "row", margin: 16}}>
+                    <BouncyCheckbox size={36} unFillColor={colors.lightBlue100} fillColor={colors.lightBlue}/>
+                    <Text style={{fontSize: 20, fontFamily: "SecondaryFontBold"}}>Permitir repeticion de cifras</Text>
                 </View>
             </View>
             <Button title={"Jugar Ahora"} onPress={()=>navigation.navigate("Game")}/>
@@ -39,11 +39,12 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: "MainFont",
         color: colors.lightBlue,
-        fontSize: 80
+        fontSize: 80,
     },
     text: {
         fontSize: 24,
         maxWidth: 275,
-        padding: 14,
+        padding: 5,
+        fontFamily: "SecondaryFont"
     }
 })
