@@ -1,5 +1,5 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import {useFonts} from "expo-font";
 import {fonts} from "../global/fonts"
 import {colors} from "../global/colors";
@@ -8,12 +8,15 @@ import Button from "../components/Button"
 
 export default function HomeScreen({navigation}) {
     const [fontsLoaded, fontError] = useFonts(fonts);
+    const [allowRepeatedDigits, setAllowRepeatedDigits] = useState(false);
 
     if (!fontsLoaded && !fontError) {
         return null
     }
+
     function handlePress() {
-        console.log("Pressed!")
+        console.log(allowRepeatedDigits)
+        navigation.navigate('GameScreen', {allowRepeatedDigits});
     }
     return (
         <SafeAreaView style={{flex: 1, padding: 16, backgroundColor: "#FAFAFA"}}>
@@ -22,11 +25,11 @@ export default function HomeScreen({navigation}) {
                 <Text style={[styles.text, {fontSize: 34, fontFamily: "SecondaryFontBold"}]}>Bienvenido!</Text>
                 <Text style={styles.text}>Adivina el numero de cuatro cifras para ganar.</Text>
                 <View style={{flexDirection: "row", margin: 16}}>
-                    <BouncyCheckbox size={36} unFillColor={colors.lightBlue100} fillColor={colors.lightBlue}/>
+                    <BouncyCheckbox size={36} unFillColor={colors.lightBlue100} fillColor={colors.lightBlue} onPress={(isChecked) => setAllowRepeatedDigits(isChecked)} />
                     <Text style={{fontSize: 20, fontFamily: "SecondaryFontBold"}}>Permitir repeticion de cifras</Text>
                 </View>
             </View>
-            <Button title={"Jugar Ahora"} onPress={()=>navigation.navigate("Game")}/>
+            <Button title={"Jugar Ahora"} onPress={() => handlePress()}/>
         </SafeAreaView>
     )
 }
