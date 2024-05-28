@@ -13,8 +13,7 @@ const copyArray = (arr) => {
 
 export default function GameScreen({navigation, route}) {
     const {allowRepeatedDigits} = route.params
-    const [secretNumber, setSecretNumber] = useState("");
-
+    const [secretNumber, setSecretNumber] = useState("")
     useEffect(() => {
         if (allowRepeatedDigits) {
             const min = Math.ceil(1000);
@@ -31,15 +30,12 @@ export default function GameScreen({navigation, route}) {
             }
             setSecretNumber(number.join("").toString())
         }
-    }, []);
-
+    }, [])
 
     const digits = secretNumber.split(""); // ['1', '6', '2', '7']
-    console.log(digits.length)
     const [rows, setRows] = useState(
-        new Array(NUMBER_OF_TRIES).fill(new Array(digits.length).fill("1"))
+        new Array(NUMBER_OF_TRIES).fill(new Array(4).fill(""))
     );
-    console.log(rows)
     const [curRow, setCurRow] = useState(0);
     const [curCol, setCurCol] = useState(0);
     const [gameState, setGameState] = useState("playing"); // won, lost, playing
@@ -51,7 +47,15 @@ export default function GameScreen({navigation, route}) {
     }, [curRow]);
 
     const checkGameState = () => {
-        /*TODO*/
+        const prevRow = curRow - 1
+        const guess = rows[prevRow].join("")
+        if (guess === secretNumber) {
+            navigation.navigate("EndGameScreen", {secretNumber, gameState: "won"})
+        }
+        else if (curRow === NUMBER_OF_TRIES) {
+            setGameState("lost")
+            navigation.navigate("EndGameScreen", {secretNumber, gameState: "lost"})
+        }
     };
 
 
@@ -112,7 +116,8 @@ export default function GameScreen({navigation, route}) {
             <View style={{alignItems: "center", flexDirection: "row", justifyContent: "center"}}>
                 <Text style={styles.title}>Number: </Text>
                 <Text
-                    style={styles.number}>{(gameState === "Won" || gameState === "Lost") ? {/*number*/} : secretNumber}</Text>
+                    style={styles.number}>XXXX
+                </Text>
             </View>
             <ScrollView style={styles.map}>
                 {rows.map((row, i) => (

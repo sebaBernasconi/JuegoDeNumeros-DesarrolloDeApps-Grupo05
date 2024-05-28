@@ -4,16 +4,16 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {NavigationContainer} from "@react-navigation/native";
 import HomeScreen from "../screens/HomeScreen";
 import GameScreen from "../screens/GameScreen";
-import WinScreen from "../screens/WinScreen";
+import EndGameScreen from "../screens/EndGameScreen";
 
 const Stack = createNativeStackNavigator();
 export default function MainStack() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name={"Home"} component={HomeScreen}/>
-                <Stack.Screen name={"Game"} component={GameScreen}/>
-                <Stack.Screen name={"Win"} component={WinScreen} />
+                <Stack.Screen name={"HomeScreen"} component={HomeScreen}/>
+                <Stack.Screen name={"GameScreen"} component={GameScreen}/>
+                <Stack.Screen name={"EndGameScreen"} component={EndGameScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )
